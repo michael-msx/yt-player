@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.state={videos : [] }
 
-    YTSearch({key:API_KEY, term: 'fire'}, (videos) => {
+    YTSearch({key:API_KEY, term: ''}, (videos) => {
       this.setState({videos})
     })
   }
