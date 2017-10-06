@@ -8,7 +8,7 @@ export default class VideoListItem extends React.Component {
 
     return (
       <ListGroupItem>
-          <Media>
+          <Media onClick={() => this.props.onVideoSelect(video)}>
             <Media.Left align="top">
               <img src={imageUrl} alt='video'/>
             </Media.Left>
