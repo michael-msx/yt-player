@@ -7,7 +7,7 @@ export default class VideoListItem extends React.Component {
     const imageUrl = video.snippet.thumbnails.default.url
 
     return (
-      <ListGroupItem>
+      <ListGroupItem className="list-group-item">
           <Media onClick={() => this.props.onVideoSelect(video)}>
             <Media.Left align="top">
               <img src={imageUrl} alt='video'/>

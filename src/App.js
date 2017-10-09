@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import _ from 'lodash'
 import SearchBar from './components/search_bar'
 import YTSearch from 'youtube-api-search'
 import Videolist from './components/video_list'
@@ -18,10 +18,10 @@ class App extends Component {
       videos : [],
       selectVideo: null
     }
-    this.go_search('')
+    this.videoSearch('')
   }
 
-  go_search = (val) => {
+  videoSearch = (val) => {
     console.log('Search for :' + val)
     YTSearch({key:API_KEY, term: val}, (videos) => {
       this.setState({
@@ -33,6 +33,8 @@ class App extends Component {
 
 
   render() {
+    const videoSearch = _.debounce ((term) => {this.videoSearch(term)} , 500)
+
     return (
       <div className="App">
         <header className="App-header">
@@ -40,7 +42,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to My Youtube Video Player</h1>
         </header><br/>
 
-        <SearchBar go_search = {this.go_search}/>
+        <SearchBar videoSearch = {videoSearch}/>
         <VideoDetail
           video={this.state.selectVideo}/>
         <Videolist

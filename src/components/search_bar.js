@@ -1,35 +1,30 @@
 import React from 'react';
-import {FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap'
+import {FormGroup, FormControl} from 'react-bootstrap'
 
 export default class SearchBar extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      search_key : ''
+      term : ''
     }
   }
 
-  handleChange = (e) => {
-     this.setState({ search_key: e.target.value });
-  }
-
-  handleClick = () => {
-    this.props.go_search(this.state.search_key)
+  handleChange = (term) => {
+    this.setState ({term})
+    this.props.videoSearch(term)
   }
 
   render() {
     return (
-      <div>
+      <div className = "search-bar">
       <form>
         <FormGroup>
-          <ControlLabel>Search Videos</ControlLabel>
           <FormControl
             id='search_text'
             type='text' placeholder='Search for the videos on Youtube...'
-            value={this.state.search_key}
-            onChange={this.handleChange}/>
-          <Button type='submit' onClick={this.handleClick}>Search it!</Button>
+            value={this.state.term}
+            onChange={event => this.handleChange(event.target.value)}/>
         </FormGroup>
       </form>
     </div>);
