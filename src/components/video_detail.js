@@ -11,9 +11,9 @@ export default class VideoDetail extends Component {
     const url = `https://www.youtube.com/embed/${videoId}`
 
     return (
-      <div>
+      <div className="video-detial">
         <iframe title='yp-player' src={url}></iframe>
-        <div>
+        <div className="detail">
           <div>{video.snippet.title}</div>
           <div>{video.snippet.description}</div>
         </div>
